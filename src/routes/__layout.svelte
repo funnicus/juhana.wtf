@@ -4,10 +4,12 @@
 	import '../app.css';
 </script>
 
-<Header />
+<div class="font-mono">
+	<Header />
 
-<main>
-	<slot />
-</main>
+	<main >
+		<slot />
+	</main>
 
 <Footer />
+</div>

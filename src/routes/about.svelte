@@ -19,24 +19,33 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="content">
-	<h1>About this app</h1>
+<div class="bg-image-grey">
+	<section
+		class="p-4 pb-0 max-w-screen-xl min-h-screen mx-auto flex xl:flex-row flex-col pt-20 justify-between items-center"
+	>
+		<article class="xl:w-1/2 p-4 text-gray-500">
+			<div>
+				<h1 class="text-6xl mb-8">About me</h1>
+				<p class="mb-4 text-lg">
+					Hello, my name is Juhana Kuparinen 👋🏻. I was born and raised in Helsinki, Finland but
+					currently I study Information and Communcation Technology at University of Turku. I‘m
+					interested in all things coding, with a focus on fullstack web development with React,
+					Node.js, TypeScript and GraphQL.
+				</p>
+				<p class="mb-4 text-lg">
+					On my free time, I like to motorcycle, play video games, workout and make tasty pizzas. I
+					also listen music alot. Some of my favorites are <b>Boards of Canada</b>,
+					<b>Urlich Schnauss</b>, <b>MGMT</b>
+					and especially the album <i>Moon Safari</i> from <b>Air</b>.
+				</p>
+			</div>
+		</article>
+		<div class="xl:h-auto xl:w-2/3">
+			<img src="/me.jpg" alt="Juhana Kuparinen" />
+		</div>
+	</section>
 
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
+	<section>
 
-	<pre>npm init svelte</pre>
-
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
-
-	<p>
-		The <a href="/todos">TODOs</a> page illustrates SvelteKit's data loading and form handling. Try using
-		it with JavaScript disabled!
-	</p>
+	</section>
 </div>

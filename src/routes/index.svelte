@@ -3,6 +3,9 @@
 </script>
 
 <script lang="ts">
+import PostCard from "$lib/PostCard.svelte";
+
+	export let blogs: any;
 </script>
 
 <svelte:head>
@@ -10,10 +13,10 @@
 	<meta name="description" content="Welcome to my interwebs home!" />
 </svelte:head>
 
-<section class="bg-[url('/moto_opt.jpg')] bg-no-repeat bg-cover">
-	<section class="flex lg:flex-row flex-col pt-20 bg-gray-900/75">
-		<header class="box-border p-4 mx-auto text-white flex items-center h-screen">
-			<div class="h-fit w-fit">
+<section class="bg-image-grey">
+	<section class="p-4 pb-0 max-w-screen-xl md:min-h-screen mx-auto flex xl:flex-row flex-col pt-20 items-center ">
+		<header class="box-border p-4">
+			<div class="w-min mx-auto">
 				<h1 class="text-6xl mb-8">Juhana Kuparinen</h1>
 				<h4 class="text-2xl">
 					IT student and
@@ -24,63 +27,18 @@
 				</h4>
 			</div>
 		</header>
-		<div class="h-1/2 w-1/2 mx-auto" />
+		<div class="h-auto max-w-2/3">
+			<img src="/me.jpg" alt="Juhana Kuparinen" />
+		</div>
 	</section>
 </section>
-<section class="bg-gray-200 flex" />
 
-<section class="bg-slate-500 text-white">
+<section class="bg-image-grey">
 	<div class="max-w-screen-xl mx-auto p-6">
 		<h5 class="text-xl mb-24">Recent articles:</h5>
-		<article class="mb-24">
-			<a href="/blog">
-				<header class="mb-5">
-					<h2 class="text-4xl underline mb-5">Junction 2021 afterthoughts</h2>
-					<span>
-						tag | tag 2 |
-						<b>2.3.2022</b>
-					</span>
-				</header>
-				<p class="mb-5">
-					I participated in the Junction 2021 hackathon with few of my friends last weekend. We had
-					a lot of fun hacking! No prizes this time though...
-				</p>
-				<p class="underline"><a>Read more</a> 🔎</p>
-			</a>
-		</article>
 
-		<article class="mb-24">
-			<a href="/blog">
-				<header class="mb-5">
-					<h2 class="text-4xl underline mb-5">Junction 2021 afterthoughts</h2>
-					<span>
-						tag | tag 2 |
-						<b>2.3.2022</b>
-					</span>
-				</header>
-				<p class="mb-5">
-					I participated in the Junction 2021 hackathon with few of my friends last weekend. We had
-					a lot of fun hacking! No prizes this time though...
-				</p>
-				<p class="underline"><a>Read more</a> 🔎</p>
-			</a>
-		</article>
-
-		<article class="mb-24">
-			<a href="/blog">
-				<header class="mb-5">
-					<h2 class="text-4xl underline mb-5">Junction 2021 afterthoughts</h2>
-					<span>
-						tag | tag 2 |
-						<b>2.3.2022</b>
-					</span>
-				</header>
-				<p class="mb-5">
-					I participated in the Junction 2021 hackathon with few of my friends last weekend. We had
-					a lot of fun hacking! No prizes this time though...
-				</p>
-				<p class="underline"><a>Read more</a> 🔎</p>
-			</a>
-		</article>
+		{#each blogs as blog}
+		<PostCard post={blog} />
+		{/each}
 	</div>
 </section>
