@@ -39,6 +39,7 @@
 		"@notionhq/client": "^2.0.0",
 		"cookie": "^0.4.1",
 		"dotenv": "^16.0.1",
+		"node-cache": "^5.1.2",
 		"svelte-image": "^0.2.9",
 		"zod": "^3.17.3"
 	}

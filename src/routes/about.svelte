@@ -21,28 +21,28 @@
 
 <div class="bg-image-grey">
 	<section
-		class="p-4 pb-0 max-w-screen-xl min-h-screen mx-auto flex xl:flex-row flex-col pt-20 justify-between items-center"
+		class="p-4 flex items-center pb-0 max-w-screen-xl min-h-screen mx-auto"
 	>
-		<article class="xl:w-1/2 p-4 text-gray-500">
+		<article class="p-4">
 			<div>
-				<h1 class="text-6xl mb-8">About me</h1>
+				<h1 class="text-6xl mb-8">Hello, I'm Juhana 👋🏻 </h1>
 				<p class="mb-4 text-lg">
-					Hello, my name is Juhana Kuparinen 👋🏻. I was born and raised in Helsinki, Finland but
-					currently I study Information and Communcation Technology at University of Turku. I‘m
-					interested in all things coding, with a focus on fullstack web development with React,
-					Node.js, TypeScript and GraphQL.
+					I'm a curious software developer, currently interested in web development and the Rust programming language.
+					I'm most skilled with fullstack development, using modern web technologies like <b>React (Next.js)</b>, <b>TypeScript</b>, 
+					<b>GraphQL</b> and <b>Node.js</b>.
+				</p>
+				<p class="mb-4 text-lg">
+					For the last three years, I have studied <i>Information and Communcation Technology</i> at University of Turku. 
+					I'm also a <i>Co-Founder</i> at Kvanttori Oy and currently work as a <i>Software Developer Trainee</i> at Futurice.
 				</p>
 				<p class="mb-4 text-lg">
 					On my free time, I like to motorcycle, play video games, workout and make tasty pizzas. I
-					also listen music alot. Some of my favorites are <b>Boards of Canada</b>,
-					<b>Urlich Schnauss</b>, <b>MGMT</b>
+					also listen music alot. Some of my favorites are <b>Grimes</b>,
+					<b>Urlich Schnauss</b>, <b>Biosphere</b>
 					and especially the album <i>Moon Safari</i> from <b>Air</b>.
 				</p>
 			</div>
 		</article>
-		<div class="xl:h-auto xl:w-2/3">
-			<img src="/me.jpg" alt="Juhana Kuparinen" />
-		</div>
 	</section>
 
 	<section>

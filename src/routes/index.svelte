@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-import PostCard from "$lib/PostCard.svelte";
+	import PostCard from "$lib/PostCard.svelte";
 
 	export let blogs: any;
 </script>

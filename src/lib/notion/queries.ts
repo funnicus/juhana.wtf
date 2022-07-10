@@ -2,16 +2,6 @@ import { z } from 'zod';
 
 import client from './client';
 import { BLOG_DATABASE_ID } from '../config';
-import fs from 'fs';
-
-//type PostsResult = Array<{}>;
-
-const Blogs = z
-	.object({
-		tags: z.object({ id: z.string() }),
-		status: z.object({ id: z.string() })
-	})
-	.array();
 
 const getProperty = async (pageId: string, propertyId: string) => {
 	const response = await client.pages.properties.retrieve({
@@ -40,7 +30,8 @@ const formatPost = async (post: { id: string; props: any }) => {
 		status: formattedStatus,
 		publishDate: formattedDate,
 		excerpt: formattedExcerpt,
-		title: formattedTitle
+		title: formattedTitle,
+		id: post.id
 	};
 };
 
@@ -59,15 +50,31 @@ export const getBlogs = async () => {
 		]
 	});
 
-	//fs.writeFileSync('./res.json', JSON.stringify(response));
-
-	const posts = (response.results as unknown[]).map((post: any) => ({
+	const posts = (response.results as any[]).map((post: any) => ({
 		id: post.id,
 		props: post.properties
 	}));
 
 	const props = await Promise.all(posts.map(async (post) => formatPost(post)));
-	console.log(response);
 
 	return props;
+};
+
+export const getOneBLog = async (id: string) => {
+	const response = (await client.blocks.children.list({
+		block_id: id || '26812baf-3999-43a3-88df-1686640fb5f6'
+	})) as any;
+
+	const blocks = response.results.map((result: any) => ({
+		type: result.type,
+		rich_text: result[result.type].rich_text.map((component: any) => ({
+			type: result.type,
+			text: component.text,
+			annotations: component.annotations
+		}))
+	}));
+
+	console.log(blocks);
+
+	return blocks;
 };
