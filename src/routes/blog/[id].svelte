@@ -5,4 +5,6 @@
 	export let blocks: Block[];
 </script>
 
-<Renderer blocks={blocks} />
+<section class="pt-24 max-w-screen-xl md:min-h-screen mx-auto">
+  <Renderer blocks={blocks} />
+</section>

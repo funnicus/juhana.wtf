@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 import client from './client';
 import { BLOG_DATABASE_ID } from '../config';
 

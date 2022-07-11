@@ -9,7 +9,7 @@ export type Annotations = {
 
 export type Text = {
 	content: string;
-	link: string | null;
+	link: { url: string } | null;
 };
 
 export type Type =
