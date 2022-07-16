@@ -21,12 +21,16 @@ export type Type =
 	| 'heading_6'
 	| 'paragraph'
 	| 'bold'
-	| 'code';
+	| 'code'
+	| 'image';
 
 export type Block = {
 	type: Type;
-	rich_text: {
+	rich_text?: {
 		text: Text;
 		annotations: Annotations;
 	}[];
+	external?: {
+		url: string;
+	};
 };

@@ -19,7 +19,7 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="bg-image-grey">
+<div class="bg-gray-700 text-slate-200">
 	<section
 		class="p-4 flex items-center pb-0 max-w-screen-xl min-h-screen mx-auto"
 	>
@@ -28,7 +28,7 @@
 				<h1 class="text-6xl mb-8">Hello, I'm Juhana 👋🏻 </h1>
 				<p class="mb-4 text-lg">
 					I'm a curious software developer, currently interested in web development and the Rust programming language.
-					I'm most skilled with fullstack development, using modern web technologies like <b>React (Next.js)</b>, <b>TypeScript</b>, 
+					I'm most skilled with full stack development, using modern web technologies like <b>React (Next.js)</b>, <b>TypeScript</b>, 
 					<b>GraphQL</b> and <b>Node.js</b>.
 				</p>
 				<p class="mb-4 text-lg">

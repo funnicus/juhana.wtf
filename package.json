@@ -28,6 +28,8 @@
 		"prettier-plugin-svelte": "^2.7.0",
 		"svelte": "^3.46.0",
 		"svelte-check": "^2.7.1",
+		"svelte-highlight": "^6.2.0",
+		"svelte-image": "^0.2.9",
 		"svelte-preprocess": "^4.10.7",
 		"tailwindcss": "^3.1.4",
 		"tslib": "^2.3.1",
@@ -40,7 +42,6 @@
 		"cookie": "^0.4.1",
 		"dotenv": "^16.0.1",
 		"node-cache": "^5.1.2",
-		"svelte-image": "^0.2.9",
 		"zod": "^3.17.3"
 	}
 }

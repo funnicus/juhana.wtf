@@ -14,7 +14,7 @@
 </svelte:head>
 
 <section class="bg-image-grey">
-	<section class="p-4 pb-0 max-w-screen-xl md:min-h-screen mx-auto flex xl:flex-row flex-col pt-20 items-center ">
+	<section class="p-4 pb-0 max-w-screen-lg md:min-h-screen mx-auto flex xl:flex-row flex-col pt-20 items-center justify-between">
 		<header class="box-border p-4">
 			<div class="w-min mx-auto">
 				<h1 class="text-6xl mb-8">Juhana Kuparinen</h1>
@@ -27,14 +27,14 @@
 				</h4>
 			</div>
 		</header>
-		<div class="h-auto max-w-2/3">
+		<div class="h-auto max-w-lg">
 			<img src="/me.jpg" alt="Juhana Kuparinen" />
 		</div>
 	</section>
 </section>
 
-<section class="bg-image-grey">
-	<div class="max-w-screen-xl mx-auto p-6">
+<section class="bg-image-grey pt-24">
+	<div class="max-w-screen-lg mx-auto p-6">
 		<h5 class="text-xl mb-24">Recent articles:</h5>
 
 		{#each blogs as blog}

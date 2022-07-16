@@ -16,7 +16,7 @@
 {:else if annotations.code}
   <code><svelte:self text={text} annotations={{ ...annotations, code: false }}/></code>
 {:else if text.link}
-  <a href={text.link.url} title={text.link.url}>{text.content}</a>
+  <a href={text.link.url} title={text.link.url} style="color: #9b9a97; text-decoration: underline;">{text.content}</a>
 {:else}
   {text.content}
 {/if}

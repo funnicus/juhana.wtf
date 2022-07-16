@@ -1,45 +1,39 @@
 import client from './client';
 import { BLOG_DATABASE_ID } from '../config';
+import {
+	BlogBlocks,
+	BlogDatabase,
+	DateProp,
+	MultiSelect,
+	ResultRichText,
+	Select,
+	Title
+} from './validators';
+import cache from './cache';
+import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 
 const getProperty = async (pageId: string, propertyId: string) => {
+	const fromCache = cache.get(`${pageId}-${propertyId}`);
+
+	if (fromCache) return fromCache;
+
 	const response = await client.pages.properties.retrieve({
 		page_id: pageId,
 		property_id: propertyId
 	});
 
+	cache.set(`${pageId}-${propertyId}`, response);
+
 	return response;
 };
 
-const formatPost = async (post: { id: string; props: any }) => {
-	const { tags, status, publishDate, excerpt, Name } = post.props;
+const getDatabase = async (id: string): Promise<QueryDatabaseResponse> => {
+	const fromCache = cache.get(id);
 
-	// TODO: remove any
-	const formattedExcerpt = ((await getProperty(post.id, excerpt.id)) as any).results[0].rich_text
-		.plain_text;
-	const formattedDate = ((await getProperty(post.id, publishDate.id)) as any).date.start;
-	const formattedStatus = ((await getProperty(post.id, status.id)) as any).select.name;
-	const formattedTags = ((await getProperty(post.id, tags.id)) as any).multi_select.map(
-		(tag: any) => tag.name
-	);
-	const formattedTitle = ((await getProperty(post.id, Name.id)) as any).results[0].title.plain_text;
-
-	return {
-		tags: formattedTags,
-		status: formattedStatus,
-		publishDate: formattedDate,
-		excerpt: formattedExcerpt,
-		title: formattedTitle,
-		id: post.id
-	};
-};
-
-export const getBlogs = async () => {
-	const databaseId = BLOG_DATABASE_ID;
-
-	if (!databaseId) throw new Error('No database ID!');
+	if (fromCache) return fromCache as QueryDatabaseResponse;
 
 	const response = await client.databases.query({
-		database_id: databaseId,
+		database_id: id,
 		sorts: [
 			{
 				property: 'publishDate',
@@ -48,10 +42,54 @@ export const getBlogs = async () => {
 		]
 	});
 
-	const posts = (response.results as any[]).map((post: any) => ({
-		id: post.id,
-		props: post.properties
-	}));
+	cache.set(id, response);
+
+	return response;
+};
+
+const formatPost = async ({ id, properties }: BlogDatabase) => {
+	const { tags, status, publishDate, excerpt, Name } = properties;
+
+	// Fetch all the post properties separately (I know ridiculous, but there is no other way 🙂)
+	const fetchedExcerpt = await getProperty(id, excerpt.id);
+	const fetchedDate = await getProperty(id, publishDate.id);
+	const fetchedStatus = await getProperty(id, status.id);
+	const fetchedTags = await getProperty(id, tags.id);
+	const fetcedTitle = await getProperty(id, Name.id);
+
+	// Zod validators, data might be malformatted
+	const formattedExcerpt = ResultRichText.parse(fetchedExcerpt).results[0].rich_text.plain_text;
+	const formattedDate = DateProp.parse(fetchedDate).date.start;
+	const formattedStatus = Select.parse(fetchedStatus).select.name;
+	const formattedTags = MultiSelect.parse(fetchedTags).multi_select.map((tag) => tag.name);
+	const formattedTitle = Title.parse(fetcedTitle).results[0].title.plain_text;
+
+	return {
+		id,
+		tags: formattedTags,
+		status: formattedStatus,
+		publishDate: formattedDate,
+		excerpt: formattedExcerpt,
+		title: formattedTitle
+	};
+};
+
+export const getBlogs = async () => {
+	if (!BLOG_DATABASE_ID) throw new Error('No database ID!');
+
+	const response = await getDatabase(BLOG_DATABASE_ID);
+
+	const posts = response.results.map((result) => {
+		const parsedResult = BlogDatabase.parse(result);
+
+		const { id, cover, properties } = parsedResult;
+
+		return {
+			id,
+			cover,
+			properties
+		};
+	});
 
 	const props = await Promise.all(posts.map(async (post) => formatPost(post)));
 
@@ -59,20 +97,32 @@ export const getBlogs = async () => {
 };
 
 export const getOneBLog = async (id: string) => {
-	const response = (await client.blocks.children.list({
-		block_id: id || '26812baf-3999-43a3-88df-1686640fb5f6'
-	})) as any;
+	const { cover, properties } = (await client.pages.retrieve({ page_id: id })) as any;
+	const response = await client.blocks.children.list({
+		block_id: id
+	});
 
-	const blocks = response.results.map((result: any) => ({
-		type: result.type,
-		rich_text: result[result.type].rich_text.map((component: any) => ({
+	const validatedBlocks = BlogBlocks.parse(response.results);
+	//console.log(properties);
+
+	const blocks = validatedBlocks?.map((result) => {
+		const rich_text =
+			result.type !== 'image' &&
+			result.type !== 'column_list' &&
+			result[result.type]?.rich_text.map((component) => ({
+				type: result.type,
+				text: component.text,
+				annotations: component.annotations
+			}));
+
+		return {
 			type: result.type,
-			text: component.text,
-			annotations: component.annotations
-		}))
-	}));
+			rich_text,
+			external: result.image?.external ?? result.image?.file
+		};
+	});
 
-	console.log(blocks);
+	const toFormat: BlogDatabase = { id, properties, cover };
 
-	return blocks;
+	return { cover, properties: await formatPost(toFormat), blocks };
 };

@@ -7,13 +7,14 @@ export const get: RequestHandler = async ({ params }) => {
 
 	const { id } = params;
 
-	const blocks = await getOneBLog(id);
+	const page = await getOneBLog(id);
+	//console.log(page);
 
-	if (blocks) {
+	if (page) {
 		return {
 			status: 200,
 			headers: {},
-			body: { blocks }
+			body: { page }
 		};
 	}
 

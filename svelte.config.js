@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
+//import svelteImage from 'svelte-image';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -20,5 +21,16 @@ const config = {
 		}
 	}
 };
+
+/**
+ * vite: {
+      optimizeDeps: {
+        include: ['blurhash'],
+      },
+      ssr: {
+        noExternal: ['svelte-image'],
+      },
+    },
+ */
 
 export default config;
