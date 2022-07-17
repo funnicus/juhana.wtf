@@ -21,7 +21,7 @@
 
 <div class="bg-gray-700 text-slate-200">
 	<section
-		class="p-4 flex items-center pb-0 max-w-screen-xl min-h-screen mx-auto"
+		class="p-4 flex items-center pb-0 max-w-screen-lg min-h-screen mx-auto"
 	>
 		<article class="p-4">
 			<div>

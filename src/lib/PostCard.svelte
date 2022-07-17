@@ -8,7 +8,7 @@
 			<h2 class="text-4xl underline mb-5">{post.title}</h2>
 			<span>
 				{#each post.tags as tag}
-				<span>{tag} |</span>
+					{`${tag} | `}
 				{/each}
 				<b>{post.publishDate}</b>
 			</span>

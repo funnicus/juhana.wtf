@@ -1,2 +1,2 @@
 
-<p style="margin: 1em 0 1em;"><slot></slot></p>
+<p style="margin: 1.5em 0 1.5em;"><slot></slot></p>

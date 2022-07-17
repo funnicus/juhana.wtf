@@ -27,8 +27,8 @@ const getProperty = async (pageId: string, propertyId: string) => {
 	return response;
 };
 
-const getDatabase = async (id: string): Promise<QueryDatabaseResponse> => {
-	const fromCache = cache.get(id);
+const getDatabase = async (id: string, amount?: number): Promise<QueryDatabaseResponse> => {
+	const fromCache = cache.get(`${id}-${amount}`);
 
 	if (fromCache) return fromCache as QueryDatabaseResponse;
 
@@ -39,7 +39,8 @@ const getDatabase = async (id: string): Promise<QueryDatabaseResponse> => {
 				property: 'publishDate',
 				direction: 'descending'
 			}
-		]
+		],
+		page_size: amount
 	});
 
 	cache.set(id, response);
@@ -74,10 +75,10 @@ const formatPost = async ({ id, properties }: BlogDatabase) => {
 	};
 };
 
-export const getBlogs = async () => {
+export const getBlogs = async (amount?: number) => {
 	if (!BLOG_DATABASE_ID) throw new Error('No database ID!');
 
-	const response = await getDatabase(BLOG_DATABASE_ID);
+	const response = await getDatabase(BLOG_DATABASE_ID, amount);
 
 	const posts = response.results.map((result) => {
 		const parsedResult = BlogDatabase.parse(result);

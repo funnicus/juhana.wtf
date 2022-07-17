@@ -1,3 +1,8 @@
+<script lang="ts">
+	import { page, navigating } from '$app/stores';
+
+</script>
+
 <footer class="bg-gray-800 text-slate-200">
 	<section>
 		<div class="p-8 max-w-screen-lg mx-auto">

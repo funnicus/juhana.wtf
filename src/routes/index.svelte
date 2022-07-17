@@ -13,13 +13,13 @@
 	<meta name="description" content="Welcome to my interwebs home!" />
 </svelte:head>
 
-<section class="bg-image-grey">
+<section>
 	<section class="p-4 pb-0 max-w-screen-lg md:min-h-screen mx-auto flex xl:flex-row flex-col pt-20 items-center justify-between">
 		<header class="box-border p-4">
 			<div class="w-min mx-auto">
 				<h1 class="text-6xl mb-8">Juhana Kuparinen</h1>
 				<h4 class="text-2xl">
-					IT student and
+					ICT student and
 					<br />
 					Co-Founder
 					<br />
