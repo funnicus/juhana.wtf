@@ -3,6 +3,7 @@
 
   export let annotations: Annotations
   export let text: Text
+  console.log(annotations)
 </script>
 
 {#if annotations.bold}

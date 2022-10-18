@@ -78,7 +78,7 @@ const formatPost = async ({ id, properties }: BlogDatabase) => {
 export const getBlogs = async (amount?: number) => {
 	if (!BLOG_DATABASE_ID) throw new Error('No database ID!');
 
-	const response = await getDatabase(BLOG_DATABASE_ID, amount);
+	const response = await getDatabase(BLOG_DATABASE_ID);
 
 	const posts = response.results.map((result) => {
 		const parsedResult = BlogDatabase.parse(result);
@@ -92,7 +92,9 @@ export const getBlogs = async (amount?: number) => {
 		};
 	});
 
-	const props = await Promise.all(posts.map(async (post) => formatPost(post)));
+	const props = (await Promise.all(posts.map(async (post) => formatPost(post))))
+		.filter((post) => post.status === 'Published')
+		.slice(0, amount);
 
 	return props;
 };
@@ -104,7 +106,6 @@ export const getOneBLog = async (id: string) => {
 	});
 
 	const validatedBlocks = BlogBlocks.parse(response.results);
-	//console.log(properties);
 
 	const blocks = validatedBlocks?.map((result) => {
 		const rich_text =

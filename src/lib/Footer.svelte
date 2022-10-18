@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { page, navigating } from '$app/stores';
-
+	//bg-gray-800 text-slate-200
 </script>
 
-<footer class="bg-gray-800 text-slate-200">
+<footer class="bg-white">
 	<section>
 		<div class="p-8 max-w-screen-lg mx-auto">
 			<div class="mb-10">
 				<article>
 					<h3 class="text-3xl mb-10"><b>Me around the web:</b></h3>
 					<div
-						class="flex justify-between max-w-screen-md text-slate-300 text-xl md:flex-row flex-col"
+						class="flex justify-between max-w-screen-md text-slate-900 text-xl md:flex-row flex-col"
 					>
 						<a href="https://github.com/funnicus" class="hover:underline mb-3"
 							><span>GitHub 🐙</span></a
