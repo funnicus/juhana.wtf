@@ -1,0 +1,7 @@
+{
+	"/": [],
+	"/blog": [
+		"src/routes/blog/+page.ts"
+	],
+	"/blog/[id]": []
+}
