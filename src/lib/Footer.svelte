@@ -12,7 +12,7 @@
 							><span>GitHub 🐙</span></a
 						>
 						<a
-							href="https:/🎮/www.linkedin.com/in/juhana-kuparinen-6284b8198/"
+							href="https://www.linkedin.com/in/juhana-kuparinen-6284b8198/"
 							class="hover:underline mb-3"><span>LinkedIn 👔</span></a
 						>
 						<a href="https://rateyourmusic.com/~fennicus" class="hover:underline mb-3"
