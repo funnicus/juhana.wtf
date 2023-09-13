@@ -62,11 +62,11 @@
 				<h1 
 					aria-labelledby="Juhana Kuparinen" 
 					id="my-name" 
-					class="text-8xl mb-8 text-color-text-primary cursor-pointer" 
+					class="text-6xl md:text-8xl mb-8 text-color-text-primary cursor-pointer" 
 					on:mousedown={() => shuffle()}>
 					{name}
 				</h1>
-				<h4 class="text-2xl">
+				<h4 class="md:text-2xl">
 					<span class="text-image-grey">Software Engineer | Entrepreneur | Student</span>
 				</h4>
 			</div>
