@@ -12,8 +12,6 @@
 
 		const bubble = document.createElement('div');
 
-		console.log("bubble", bubble)
-
 		bubble.className = 'bubble';
 		bubble.style.left = `${clientX + window.scrollX}px`;
 		bubble.style.top = `${clientY + window.scrollY}px`;
