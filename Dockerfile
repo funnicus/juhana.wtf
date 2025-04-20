@@ -1,6 +1,6 @@
-FROM node:18-slim
+FROM node:23-slim
 
-EXPOSE 3000
+EXPOSE 4173
 
 WORKDIR /usr/src/app
 
@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN npm i
+RUN npm run build
 
 # And finally the command to run the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "preview"]
