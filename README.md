@@ -2,6 +2,8 @@
 
 My (yet another) new website, build with SvelteKit and Tailwind CSS!
 
+Vercel address https://juhana-wtf.vercel.app
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
