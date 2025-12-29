@@ -1,25 +1,42 @@
 <script lang="ts">
-	export let post: { tags: string[], status: string, title: string, excerpt: string, publishDate: string, id: string };
+	export let title: string;
+	export let description: string;
+	export let date: string;
+	export let href: string;
+	export let tags: string[] = [];
 </script>
 
-<div class="pb-24 pt-24 border-x-2 border-color-outline max-w-screen-lg mx-auto">
-	<article class="hover:opacity-80 p-6">
-		<a href={`/blog/${post.id}`}>
-			<header class="mb-5">
-				<h2 class="text-color-text-primary text-6xl underline decoration-4 decoration-color-text-tertiary mb-5">{post.title}</h2>
-				<span class="text-color-text-tertiary">
-					{#each post.tags as tag}
-						{`${tag} | `}
-					{/each}
-					<b>{post.publishDate}</b>
-				</span>
-			</header>
-			<p class="mb-5 text-2xl">
-				{post.excerpt}
-			</p>
-			<p class="underline decoration-slate-800">
-				<span>Read more</span> 🔎
-			</p>
-		</a>
-	</article>
-</div>
+<article class="rounded-lg border border-gray-300 transition-all hover:border-gray-400 hover:scale-101 bg-white">
+	<a {href} class="block p-6">
+		<header class="mb-4">
+			<h2 class="mb-2 text-2xl font-bold text-black hover:text-blue-600 transition-colors">
+				{title}
+			</h2>
+			<div class="flex flex-wrap items-center gap-3 text-sm text-black">
+				<time datetime={date}>
+					{new Date(date).toLocaleDateString('en-US', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					})}
+				</time>
+				{#if tags.length > 0}
+					<span class="text-gray-400">•</span>
+					<div class="flex flex-wrap gap-2">
+						{#each tags as tag}
+							<span class="rounded-full bg-gray-200 px-2 py-1 text-xs text-black">
+								{tag}
+							</span>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		</header>
+		<p class="mb-4 text-black">
+			{description}
+		</p>
+		<span class="text-blue-600 hover:underline">
+			Read more →
+		</span>
+	</a>
+</article>

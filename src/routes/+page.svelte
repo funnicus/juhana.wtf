@@ -61,6 +61,9 @@
 					<span class="text-image-grey">Software Engineer | Entrepreneur</span>
 				</h4>
 			</div>
+			<h4 class="mt-4 md:text-3xl">
+					<a href="/blog" class="text-image-grey hover:underline">Checkout my blog <span class="finger-wave inline-block">👈</span></a>
+			</h4>
 		</header>
 		<div class="h-auto max-w-lg">
 			<img src="/me.png" alt="Juhana Kuparinen" />

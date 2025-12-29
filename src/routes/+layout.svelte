@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
-	import Footer from '$lib/Footer.svelte';
 	import '../app.css';
+	import Footer from '$lib/Footer.svelte';
 
 	let { children } = $props();
 
@@ -52,6 +52,10 @@
 			pointer-events: none;
 		}
 
+		a:hover .finger-wave {
+			animation: tilt 500ms ease-in-out forwards;
+		}
+
 		@keyframes ripple {
 			0% {
 				transform: translate(-100%, -100%);
@@ -71,6 +75,18 @@
 			}
 			100% {
 				opacity: 0;
+			}
+		}
+
+		@keyframes tilt {
+			0% {
+				transform: rotate(0deg);
+			}
+			50% {
+				transform: rotate(-20deg);
+			}
+			100% {
+				transform: rotate(0deg);
 			}
 		}
 	}
