@@ -13,7 +13,7 @@ This is the first post on my new blog! I built this using **SvelteKit** and **md
 
 Here are some of the things you can do with markdown:
 
-- Write **bold** and *italic* text
+- Write **bold** and _italic_ text
 - Create lists
 - Add code blocks
 - And much more!
