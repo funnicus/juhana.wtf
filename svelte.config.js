@@ -4,6 +4,11 @@ import { createHighlighter } from 'shiki';
 import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+const highlighter = await createHighlighter({
+	themes: ['nord'],
+	langs: ['javascript', 'typescript', 'bash', 'shell', 'html', 'css', 'svelte', 'json', 'python']
+});
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte', '.svx', '.md'],
@@ -15,20 +20,6 @@ const config = {
 			extensions: ['.svx', '.md'],
 			highlight: {
 				highlighter: async (code, lang = 'text') => {
-					const highlighter = await createHighlighter({
-						themes: ['nord'],
-						langs: [
-							'javascript',
-							'typescript',
-							'bash',
-							'shell',
-							'html',
-							'css',
-							'svelte',
-							'json',
-							'python'
-						]
-					});
 					await highlighter.loadLanguage(lang);
 					const html = highlighter.codeToHtml(code, { lang, theme: 'nord' });
 					return `{@html \`${html}\` }`;

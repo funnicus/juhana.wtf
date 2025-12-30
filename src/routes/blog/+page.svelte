@@ -17,7 +17,7 @@
 	{#if data.posts.length === 0}
 		<p class="text-black">No posts yet. Check back soon!</p>
 	{:else}
-		<div class="grid gap-15 md:grid-cols-2">
+		<div class="grid gap-16 md:grid-cols-2">
 			{#each data.posts as post (post.meta.title)}
 				<PostCard
 					title={post.meta.title}
