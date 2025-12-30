@@ -1,14 +1,31 @@
-FROM node:23-slim
+FROM node:24-alpine AS builder
 
-EXPOSE 4173
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy all of the content from the project to the image
+# Copy package files first for better caching
+COPY package.json pnpm-lock.yaml ./
+
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 
-RUN npm i
-RUN npm run build
+RUN pnpm build
 
-# And finally the command to run the application
-CMD ["npm", "run", "preview"]
+FROM node:24-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/build build/
+COPY --from=builder /app/node_modules node_modules/
+COPY package.json .
+
+EXPOSE 3000
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+CMD [ "node", "build" ]

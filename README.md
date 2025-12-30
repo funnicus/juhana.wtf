@@ -11,7 +11,7 @@ Once you've created a project and installed dependencies with `pnpm install`, st
 ```bash
 pnpm dev
 
-# or start the server and open the app in a new browser tab
+# Or start the server and open the app in a new browser tab
 pnpm dev --open
 ```
 
@@ -20,14 +20,24 @@ pnpm dev --open
 To create a production version of your app:
 
 ```bash
-pnpm build
+pnpm build # Build for local testing
+docker build -t juhana-wtf . # Docker for production
 ```
 
 You can preview the production build with `pnpm preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
 
+## Docker
+
+```bash
+docker run -d -p 3000:3000 juhana-wtf # Run
+docker stop juhana-wtf && docker rm juhana-wtf # Remove
+```
+
 ## Blogs
+
+Format like this:
 
 ```md
 ---

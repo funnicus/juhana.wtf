@@ -1,10 +1,12 @@
+import type { Post, ResolvedPost } from '$lib/types';
+
 export const load = async () => {
 	const allPostFiles = import.meta.glob('./posts/*.md');
 	const iterablePostFiles = Object.entries(allPostFiles);
 
-	const allPosts = await Promise.all(
+	const allPosts = (await Promise.all(
 		iterablePostFiles.map(async ([path, resolver]) => {
-			const resolvedPost = (await resolver()) as any;
+			const resolvedPost = (await resolver()) as ResolvedPost;
 			const postPath = path.slice(2, -3); // Remove './' and '.md'
 
 			return {
@@ -12,7 +14,7 @@ export const load = async () => {
 				path: `/blog/${postPath}`
 			};
 		})
-	);
+	)) as Post[];
 
 	const sortedPosts = allPosts.sort((a, b) => {
 		return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
