@@ -1,0 +1,26 @@
+# Main deployment pipeline for helikuparinen.fi
+
+name: Checks pipline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Install dependencies
+        run: pnpm install
+      - name: Lint code and check formatting
+        run: pnpm lint
+      - name: Build project
+        run: pnpm build
