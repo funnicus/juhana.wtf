@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { randomString } from '$lib/helpers';
 
 	let name = `${randomString(6)} ${randomString(9)}`;
@@ -62,7 +63,9 @@
 				</h4>
 			</div>
 			<h4 class="mt-4 md:text-3xl">
-					<a href="/blog" class="text-image-grey hover:underline">Check out my blog <span class="finger-wave inline-block">👈</span></a>
+				<a href={resolve('/blog')} class="text-image-grey hover:underline"
+					>Check out my blog <span class="finger-wave inline-block">👈</span></a
+				>
 			</h4>
 		</header>
 		<div class="h-auto max-w-lg">

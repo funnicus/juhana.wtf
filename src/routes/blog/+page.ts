@@ -7,11 +7,12 @@ export const load = async () => {
 	const allPosts = (await Promise.all(
 		iterablePostFiles.map(async ([path, resolver]) => {
 			const resolvedPost = (await resolver()) as ResolvedPost;
-			const postPath = path.slice(2, -3); // Remove './' and '.md'
+			console.log(path);
+			const postPath = path.slice(8, -3); // Remove './posts/' and '.md'
 
 			return {
 				meta: resolvedPost.metadata,
-				path: `/blog/${postPath}`
+				path: postPath
 			};
 		})
 	)) as Post[];

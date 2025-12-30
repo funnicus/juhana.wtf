@@ -10,8 +10,8 @@
 	<meta name="description" content="My blog posts and thoughts" />
 </svelte:head>
 
-<div class="mx-auto max-w-screen-lg px-4 py-12 flex flex-col gap-8 text-black">
-	<a href={resolve("/")} class="text-blue-600 hover:underline">← Home</a>
+<div class="mx-auto flex max-w-screen-lg flex-col gap-8 px-4 py-12 text-black">
+	<a href={resolve('/')} class="text-blue-600 hover:underline">← Home</a>
 	<h1 class="mb-8 text-4xl font-bold text-black">Blog</h1>
 
 	{#if data.posts.length === 0}
@@ -23,7 +23,7 @@
 					title={post.meta.title}
 					description={post.meta.description}
 					date={post.meta.date}
-					href={post.path}
+					href={`/blog/posts/${post.path}`}
 				/>
 			{/each}
 		</div>

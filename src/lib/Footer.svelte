@@ -1,4 +1,4 @@
-<footer class="">
+<footer>
 	<section>
 		<div class="mx-auto max-w-screen-lg p-4">
 			<div class="mb-10">
@@ -31,7 +31,6 @@
 			<div class="text-center">
 				<span>
 					Juhana Kuparinen © {new Date().getFullYear()}, Built with
-					{' '}
 					<a href="https://kit.svelte.dev/" class="text-orange-500">SvelteKit</a>
 				</span>
 			</div>
