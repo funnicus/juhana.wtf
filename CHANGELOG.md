@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Remove vercerl address
 - Fix pipelines
 - Change profile pic from png to webp
+- Change to script based plausible, due to package issue with svelte
 
 ## [2023] - 2023-10-11
 
