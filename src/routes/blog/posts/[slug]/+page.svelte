@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import JsonLd from '$lib/JsonLd.svelte';
 
 	export let data;
 
-	$: jsonLd = JSON.stringify({
+	$: schema = {
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
 		headline: data.meta.title,
@@ -26,13 +27,15 @@
 			'@type': 'WebPage',
 			'@id': `https://juhana.wtf/blog/posts/${data.slug}`
 		}
-	});
+	};
 
 	$: canonicalUrl = `https://juhana.wtf/blog/posts/${data.slug}`;
 	$: ogImage = data.meta.image
 		? `https://juhana.wtf${data.meta.image}`
 		: 'https://juhana.wtf/me.webp';
 </script>
+
+<JsonLd {schema} />
 
 <svelte:head>
 	<title>{data.meta.title} – Juhana Kuparinen</title>
@@ -66,9 +69,6 @@
 	<meta name="twitter:description" content={data.meta.description} />
 	<meta name="twitter:image" content={ogImage} />
 	<meta name="twitter:image:alt" content={data.meta.title} />
-
-	<!-- JSON-LD BlogPosting schema -->
-	{@html `<script type="application/ld+json">${jsonLd}<\/script>`}
 </svelte:head>
 
 <article class="prose prose-lg mx-auto max-w-screen-md px-4 py-12 text-black">

@@ -1,10 +1,11 @@
 <script lang="ts">
 	import PostCard from '$lib/PostCard.svelte';
 	import { resolve } from '$app/paths';
+	import JsonLd from '$lib/JsonLd.svelte';
 
 	export let data;
 
-	const jsonLd = JSON.stringify({
+	const schema = {
 		'@context': 'https://schema.org',
 		'@type': 'Blog',
 		name: 'Juhana Kuparinen – Blog',
@@ -15,8 +16,10 @@
 			name: 'Juhana Kuparinen',
 			url: 'https://juhana.wtf'
 		}
-	});
+	};
 </script>
+
+<JsonLd {schema} />
 
 <svelte:head>
 	<title>Blog – Juhana Kuparinen</title>
@@ -48,9 +51,6 @@
 	/>
 	<meta name="twitter:image" content="https://juhana.wtf/me.webp" />
 	<meta name="twitter:image:alt" content="Juhana Kuparinen" />
-
-	<!-- JSON-LD Blog schema -->
-	{@html `<script type="application/ld+json">${jsonLd}<\/script>`}
 </svelte:head>
 
 <div class="mx-auto flex max-w-screen-lg flex-col gap-8 px-4 py-12 text-black">

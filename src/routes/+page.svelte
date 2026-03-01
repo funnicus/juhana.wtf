@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { randomString } from '$lib/helpers';
+	import JsonLd from '$lib/JsonLd.svelte';
 
 	let name = `${randomString(6)} ${randomString(9)}`;
 
@@ -37,7 +38,7 @@
 
 	shuffle();
 
-	const jsonLd = JSON.stringify({
+	const schema = {
 		'@context': 'https://schema.org',
 		'@type': 'Person',
 		name: 'Juhana Kuparinen',
@@ -53,8 +54,10 @@
 			'https://glitchwave.com/user/fennicus/',
 			'https://www.goodreads.com/user/show/139209302-juhana-kuparinen'
 		]
-	});
+	};
 </script>
+
+<JsonLd {schema} />
 
 <svelte:head>
 	<title>Juhana Kuparinen – Software Engineer & Entrepreneur</title>
@@ -86,9 +89,6 @@
 	/>
 	<meta name="twitter:image" content="https://juhana.wtf/me.webp" />
 	<meta name="twitter:image:alt" content="Juhana Kuparinen" />
-
-	<!-- JSON-LD Person schema -->
-	{@html `<script type="application/ld+json">${jsonLd}<\/script>`}
 </svelte:head>
 
 <section class="mb-20 xl:mb-0">
@@ -113,7 +113,7 @@
 					I build software and occasionally write about it. Welcome to my corner of the internet.
 				</p>
 			</div>
-			<h3 class="mt-4 md:text-3xl">
+			<h3 class="mt-8 md:text-3xl">
 				<a href={resolve('/blog')} class="text-image-grey hover:underline"
 					>Check out my blog <span class="finger-wave inline-block">👈</span></a
 				>
