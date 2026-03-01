@@ -1,20 +1,9 @@
 <script lang="ts">
-	import { init } from '@plausible-analytics/tracker';
-
 	import '../app.css';
 	import Footer from '$lib/Footer.svelte';
 	import type { LayoutProps } from './$types';
-	import { onMount } from 'svelte';
 
 	let { children, data }: LayoutProps = $props();
-
-	onMount(() => {
-		if (data && data.plausibleDomain) {
-			init({
-				domain: data.plausibleDomain
-			});
-		}
-	});
 
 	// TODO: type this better
 	const click = ({ clientX, clientY }: MouseEvent) => {
@@ -37,6 +26,24 @@
 </script>
 
 <svelte:window on:mousedown={click} />
+
+<svelte:head>
+	{#if data.plausibleEnabled}
+		<script async src="https://plausible.io/js/pa-v3K7TAZUFdAHx2GTRKOW0.js">
+			(window.plausible =
+				window.plausible ||
+				function () {
+					(plausible.q = plausible.q || []).push(arguments);
+				}),
+				(plausible.init =
+					plausible.init ||
+					function (i) {
+						plausible.o = i || {};
+					});
+			plausible.init();
+		</script>
+	{/if}
+</svelte:head>
 
 <div class="bg-color-primary-dark text-image-grey font-mono">
 	<main id="bubble-wrapper">
