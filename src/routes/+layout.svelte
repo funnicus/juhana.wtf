@@ -1,8 +1,20 @@
 <script lang="ts">
+	import { init } from '@plausible-analytics/tracker';
+
 	import '../app.css';
 	import Footer from '$lib/Footer.svelte';
+	import type { LayoutProps } from './$types';
+	import { onMount } from 'svelte';
 
-	let { children } = $props();
+	let { children, data }: LayoutProps = $props();
+
+	onMount(() => {
+		if (data && data.plausibleDomain) {
+			init({
+				domain: data.plausibleDomain
+			});
+		}
+	});
 
 	// TODO: type this better
 	const click = ({ clientX, clientY }: MouseEvent) => {

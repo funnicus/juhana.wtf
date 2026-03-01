@@ -29,7 +29,7 @@ You can preview the production build with `pnpm preview`.
 ## Docker
 
 ```bash
-docker run -d -p 3000:3000 juhana-wtf # Run
+docker run -e PUBLIC_PLAUSIBLE_DOMAIN=juhana.wtf -d -p 3000:3000 juhana-wtf # Run, remember to use in compose too (environment block or env_file)
 docker stop juhana-wtf && docker rm juhana-wtf # Remove
 ```
 

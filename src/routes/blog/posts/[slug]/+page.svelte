@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { track } from '@plausible-analytics/tracker';
 	import { resolve } from '$app/paths';
 
 	export let data;
+
+	track('blog-visit', { props: { tier: 'startup' } });
 </script>
 
 <svelte:head>

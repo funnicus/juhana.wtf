@@ -39,6 +39,7 @@
 		"vite": "^6.2.5"
 	},
 	"dependencies": {
-		"@fontsource/fira-mono": "^5.2.5"
+		"@fontsource/fira-mono": "^5.2.5",
+		"@plausible-analytics/tracker": "^0.4.4"
 	}
 }
