@@ -69,7 +69,7 @@
 			</h4>
 		</header>
 		<div class="h-auto max-w-lg">
-			<img src="/me.png" alt="Juhana Kuparinen" />
+			<img src="/me.webp" alt="Juhana Kuparinen" />
 		</div>
 	</section>
 </section>
