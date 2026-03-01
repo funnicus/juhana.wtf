@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Add blog, switch to pnpm
 - Add pipeline checks
+- Add plausible
 
 ### ⚙️ Miscellaneous Tasks
 
