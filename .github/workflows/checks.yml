@@ -20,6 +20,8 @@ jobs:
           version: 10
       - name: Install dependencies
         run: pnpm install
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=high
       - name: Lint code and check formatting
         run: pnpm lint
       - name: Build project
