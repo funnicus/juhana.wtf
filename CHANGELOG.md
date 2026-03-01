@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 
 - Resolve all lint warnings from GEO optimization commit
 - Migrate remaining Svelte 4 syntax to Svelte 5 runes
+- Audit issues and add audit step to github actions
 
 ### ⚙️ Miscellaneous Tasks
 
