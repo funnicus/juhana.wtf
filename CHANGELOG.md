@@ -9,6 +9,12 @@ All notable changes to this project will be documented in this file.
 - Add blog, switch to pnpm
 - Add pipeline checks
 - Add plausible
+- GEO optimizations
+
+### 🐛 Bug Fixes
+
+- Resolve all lint warnings from GEO optimization commit
+- Migrate remaining Svelte 4 syntax to Svelte 5 runes
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -21,6 +27,8 @@ All notable changes to this project will be documented in this file.
 - Change to script based plausible, due to package issue with svelte
 - Remove redundant code
 - Move Plausible to app.html
+- Restyling
+- Restyle blog cards
 
 ## [2023] - 2023-10-11
 
