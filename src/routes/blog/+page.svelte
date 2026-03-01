@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import JsonLd from '$lib/JsonLd.svelte';
 
-	export let data;
+	let { data } = $props();
 
 	const schema = {
 		'@context': 'https://schema.org',

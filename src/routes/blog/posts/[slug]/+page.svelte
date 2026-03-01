@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import JsonLd from '$lib/JsonLd.svelte';
 
-	export let data;
+	let { data } = $props();
 
-	$: jsonLd = JSON.stringify({
+	let schema = $derived({
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
 		headline: data.meta.title,
@@ -28,11 +29,13 @@
 		}
 	});
 
-	$: canonicalUrl = `https://juhana.wtf/blog/posts/${data.slug}`;
-	$: ogImage = data.meta.image
-		? `https://juhana.wtf${data.meta.image}`
-		: 'https://juhana.wtf/me.webp';
+	let canonicalUrl = $derived(`https://juhana.wtf/blog/posts/${data.slug}`);
+	let ogImage = $derived(
+		data.meta.image ? `https://juhana.wtf${data.meta.image}` : 'https://juhana.wtf/me.webp'
+	);
 </script>
+
+<JsonLd {schema} />
 
 <svelte:head>
 	<title>{data.meta.title} – Juhana Kuparinen</title>
@@ -66,14 +69,7 @@
 	<meta name="twitter:description" content={data.meta.description} />
 	<meta name="twitter:image" content={ogImage} />
 	<meta name="twitter:image:alt" content={data.meta.title} />
-
-	<!-- JSON-LD BlogPosting schema -->
-	{@html `<script type="application/ld+json">${jsonLd}<\/script>`}
 </svelte:head>
-
-<div class="mx-auto max-w-screen-md px-4 py-8">
-	<a href={resolve('/blog')} class="text-blue-600 hover:underline">← Back to blog</a>
-</div>
 
 <article class="prose prose-lg mx-auto max-w-screen-md px-4 py-12 text-black">
 	<header class="not-prose mb-8">
@@ -101,7 +97,7 @@
 		{/if}
 	</header>
 
-	<svelte:component this={data.content} />
+	<data.content />
 </article>
 
 <div class="mx-auto max-w-screen-md px-4 py-8">
