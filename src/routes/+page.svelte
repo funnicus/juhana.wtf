@@ -36,11 +36,59 @@
 	};
 
 	shuffle();
+
+	const jsonLd = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Juhana Kuparinen',
+		url: 'https://juhana.wtf',
+		jobTitle: 'Software Engineer',
+		description:
+			'Software Engineer and Entrepreneur. Personal website and blog about software development.',
+		image: 'https://juhana.wtf/me.webp',
+		sameAs: [
+			'https://github.com/funnicus',
+			'https://www.linkedin.com/in/juhana-kuparinen-6284b8198/',
+			'https://rateyourmusic.com/~fennicus',
+			'https://glitchwave.com/user/fennicus/',
+			'https://www.goodreads.com/user/show/139209302-juhana-kuparinen'
+		]
+	});
 </script>
 
 <svelte:head>
-	<title>juhana.wtf</title>
-	<meta name="description" content="Welcome to my interwebs home!" />
+	<title>Juhana Kuparinen – Software Engineer & Entrepreneur</title>
+	<meta
+		name="description"
+		content="Juhana Kuparinen is a Software Engineer and Entrepreneur. Welcome to my personal website and blog."
+	/>
+	<link rel="canonical" href="https://juhana.wtf/" />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://juhana.wtf/" />
+	<meta property="og:title" content="Juhana Kuparinen – Software Engineer & Entrepreneur" />
+	<meta
+		property="og:description"
+		content="Juhana Kuparinen is a Software Engineer and Entrepreneur. Welcome to my personal website and blog."
+	/>
+	<meta property="og:image" content="https://juhana.wtf/me.webp" />
+	<meta property="og:image:alt" content="Juhana Kuparinen" />
+	<meta property="og:site_name" content="juhana.wtf" />
+	<meta property="og:locale" content="en_US" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Juhana Kuparinen – Software Engineer & Entrepreneur" />
+	<meta
+		name="twitter:description"
+		content="Juhana Kuparinen is a Software Engineer and Entrepreneur. Welcome to my personal website and blog."
+	/>
+	<meta name="twitter:image" content="https://juhana.wtf/me.webp" />
+	<meta name="twitter:image:alt" content="Juhana Kuparinen" />
+
+	<!-- JSON-LD Person schema -->
+	{@html `<script type="application/ld+json">${jsonLd}<\/script>`}
 </svelte:head>
 
 <section class="mb-20 xl:mb-0">
@@ -51,22 +99,25 @@
 			<div class="mx-auto w-min">
 				<div role="button" tabindex="0" on:mousedown={() => shuffle()}>
 					<h1
-						aria-labelledby="Juhana Kuparinen"
+						aria-label="Juhana Kuparinen"
 						id="my-name"
 						class="text-color-text-primary mb-8 cursor-pointer text-6xl md:text-8xl"
 					>
 						{name}
 					</h1>
 				</div>
-				<h4 class="md:text-2xl">
+				<h2 class="md:text-2xl">
 					<span class="text-image-grey">Software Engineer | Entrepreneur</span>
-				</h4>
+				</h2>
+				<p class="text-image-grey mt-4 max-w-sm text-sm leading-relaxed md:text-base">
+					I build software and occasionally write about it. Welcome to my corner of the internet.
+				</p>
 			</div>
-			<h4 class="mt-4 md:text-3xl">
+			<h3 class="mt-4 md:text-3xl">
 				<a href={resolve('/blog')} class="text-image-grey hover:underline"
 					>Check out my blog <span class="finger-wave inline-block">👈</span></a
 				>
-			</h4>
+			</h3>
 		</header>
 		<div class="h-auto max-w-lg">
 			<img src="/me.webp" alt="Juhana Kuparinen" />

@@ -1,0 +1,20 @@
+# Juhana Kuparinen
+
+> Software Engineer and Entrepreneur. This is my personal website and blog at juhana.wtf.
+
+## About
+
+Juhana Kuparinen is a software engineer and entrepreneur. This site serves as his personal home on the internet, featuring a blog where he shares thoughts and posts about software development and related topics.
+
+## Blog
+
+- [Blog index](/blog): List of all blog posts
+- [Welcome to My Blog](/blog/posts/welcome): An introduction post about the markdown-based blog built with SvelteKit and mdsvex
+
+## Links
+
+- [GitHub](https://github.com/funnicus)
+- [LinkedIn](https://www.linkedin.com/in/juhana-kuparinen-6284b8198/)
+- [Rate Your Music](https://rateyourmusic.com/~fennicus)
+- [Glitchwave](https://glitchwave.com/user/fennicus/)
+- [Goodreads](https://www.goodreads.com/user/show/139209302-juhana-kuparinen)
