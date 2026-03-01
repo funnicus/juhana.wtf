@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Fix pipelines
 - Change profile pic from png to webp
 - Change to script based plausible, due to package issue with svelte
+- Remove redundant code
 
 ## [2023] - 2023-10-11
 
