@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Review comments
 - Remove vercerl address
 - Fix pipelines
+- Change profile pic from png to webp
 
 ## [2023] - 2023-10-11
 
