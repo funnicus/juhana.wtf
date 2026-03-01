@@ -71,6 +71,10 @@
 	<meta name="twitter:image:alt" content={data.meta.title} />
 </svelte:head>
 
+<div class="mx-auto max-w-screen-md px-4 py-8">
+	<a href={resolve('/blog')} class="text-blue-600 hover:underline">← Back to blog</a>
+</div>
+
 <article class="prose prose-lg mx-auto max-w-screen-md px-4 py-12 text-black">
 	<header class="not-prose mb-8">
 		<h1 class="mb-2 text-4xl font-bold text-slate-900">{data.meta.title}</h1>

@@ -8,8 +8,8 @@
 	export let tags: string[] = [];
 </script>
 
-<article class="rounded-lg border border-gray-300 bg-white transition-all hover:border-gray-400">
-	<a href={resolve(href)} class="block p-6">
+<article class="w-96 rounded-lg transition-all">
+	<a href={resolve(href)} class="block">
 		<header class="mb-4">
 			<h2 class="mb-2 text-2xl font-bold text-black transition-colors hover:text-blue-600">
 				{title}
