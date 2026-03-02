@@ -86,6 +86,8 @@
 					day: 'numeric'
 				})}
 			</time>
+			<span class="text-gray-400">•</span>
+			<span>{data.readTime} min read</span>
 			{#if data.meta.author}
 				<span>by {data.meta.author}</span>
 			{/if}

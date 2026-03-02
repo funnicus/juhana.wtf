@@ -1,5 +1,23 @@
 const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
+const WORDS_PER_MINUTE = 200;
+
+export const calcReadTime = (markdown: string): number => {
+	const withoutFrontmatter = markdown.replace(/^---[\s\S]*?---/, '');
+	const plainText = withoutFrontmatter
+		.replace(/```[\s\S]*?```/g, '')
+		.replace(/`[^`]+`/g, '')
+		.replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+		.replace(/\[[^\]]*\]\([^)]*\)/g, '')
+		.replace(/^#{1,6}\s+/gm, '')
+		.replace(/[*_~]+/g, '')
+		.replace(/<[^>]+>/g, '')
+		.replace(/\s+/g, ' ')
+		.trim();
+	const wordCount = plainText.split(' ').filter(Boolean).length;
+	return Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
+};
+
 export const randomString = (n: number) =>
 	Array(n)
 		.join()

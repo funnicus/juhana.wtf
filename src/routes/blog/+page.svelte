@@ -68,6 +68,7 @@
 					date={post.meta.date}
 					href={`/blog/posts/${post.path}`}
 					tags={post.meta.tags ?? []}
+					readTime={post.readTime}
 				/>
 			{/each}
 		</div>
