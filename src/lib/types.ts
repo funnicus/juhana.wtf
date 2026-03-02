@@ -19,4 +19,5 @@ export type Post = {
 		image?: string;
 	};
 	path: string;
+	readTime: number;
 };

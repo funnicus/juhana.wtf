@@ -6,6 +6,7 @@
 	export let date: string;
 	export let href: `${`/blog/posts/${string}`}`;
 	export let tags: string[] = [];
+	export let readTime: number;
 </script>
 
 <article class="w-96 rounded-lg transition-all">
@@ -22,6 +23,8 @@
 						day: 'numeric'
 					})}
 				</time>
+				<span class="text-gray-400">•</span>
+				<span>{readTime} min read</span>
 				{#if tags.length > 0}
 					<span class="text-gray-400">•</span>
 					<div class="flex flex-wrap gap-2">
