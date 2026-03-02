@@ -7,8 +7,6 @@ tags: ['svelte', 'blogging', 'web development']
 image: '/me.webp'
 ---
 
-# Welcome to My Blog
-
 This is the first post on my new blog! I built this using **SvelteKit** and **mdsvex**, which allows me to write blog posts in markdown.
 
 ## Features

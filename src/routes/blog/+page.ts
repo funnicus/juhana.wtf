@@ -7,7 +7,6 @@ export const load = async () => {
 	const allPosts = (await Promise.all(
 		iterablePostFiles.map(async ([path, resolver]) => {
 			const resolvedPost = (await resolver()) as ResolvedPost;
-			console.log(path);
 			const postPath = path.slice(8, -3); // Remove './posts/' and '.md'
 
 			return {
@@ -17,7 +16,11 @@ export const load = async () => {
 		})
 	)) as Post[];
 
-	const sortedPosts = allPosts.sort((a, b) => {
+	const now = new Date();
+
+	const publishedPosts = allPosts.filter((post) => new Date(post.meta.date) <= now);
+
+	const sortedPosts = publishedPosts.sort((a, b) => {
 		return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
 	});
 
