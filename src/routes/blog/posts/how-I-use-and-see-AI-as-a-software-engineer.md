@@ -7,7 +7,7 @@ tags: ['software engineering', 'A.I.', 'philosophy']
 image: '/me.webp'
 ---
 
-Last Christmas (no pun intended), I was truly amazed by the abilities of **Claude Sonnet 4.5**. Earlier during the year, I had tried GPT 4 during the vibe coding trend, and needless to say, I was disappointed in the results: half the time the code worked, half the time it just blew apart. With the latest Claude model, however, I truly was able to get productive work done, so that the code actually worked most of the time reliably.
+Last Christmas (no pun intended), I was truly amazed by the abilities of **Claude Sonnet 4.5**. Earlier during the year, I had tried GPT 4 during the vibe coding trend, and needless to say, I was disappointed in the results: half the time the code worked, half the time it just blew apart. With the latest Claude model, however, I truly was able to get productive work done. The code actually worked most of the time reliably.
 
 LLMs have truly transformed my workflows, both in work and personal time. Though I feel a bigger impact in my personal projects, since I can now tackle much bigger challenges alone. Since people have been somewhat interested in how I use A.I, I'll talk about that next, based on my experiences, and also share some opinions on the wider implications and usefulness of this new technology.
 
