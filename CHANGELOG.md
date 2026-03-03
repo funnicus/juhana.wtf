@@ -34,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - Filter out future blogs from blog page list
 - Small style changes
 - Final blog changes
+- Add a small padding around main content
 
 ## [2023] - 2023-10-11
 
