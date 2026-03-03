@@ -26,7 +26,7 @@
 <svelte:window on:mousedown={click} />
 
 <div class="bg-color-primary-dark text-image-grey font-mono">
-	<main id="bubble-wrapper" class="mx-auto max-w-screen-lg">
+	<main id="bubble-wrapper" class="mx-auto max-w-screen-lg p-4">
 		{@render children()}
 	</main>
 
