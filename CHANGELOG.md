@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Add pipeline checks
 - Add plausible
 - GEO optimizations
+- Add automatic read time estimation to blog posts
 
 ### 🐛 Bug Fixes
 
@@ -30,6 +31,9 @@ All notable changes to this project will be documented in this file.
 - Move Plausible to app.html
 - Restyling
 - Restyle blog cards
+- Filter out future blogs from blog page list
+- Small style changes
+- Final blog changes
 
 ## [2023] - 2023-10-11
 
