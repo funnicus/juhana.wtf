@@ -1,6 +1,6 @@
 <footer>
 	<section>
-		<div class="mx-auto max-w-screen-lg p-4">
+		<div class="mx-auto max-w-screen-lg py-4">
 			<div class="mb-10">
 				<article class="text-center xl:text-left">
 					<h3 class="mb-10 text-3xl"><b>Me around the web:</b></h3>
