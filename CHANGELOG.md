@@ -35,6 +35,7 @@ All notable changes to this project will be documented in this file.
 - Small style changes
 - Final blog changes
 - Add a small padding around main content
+- Blog release date
 
 ## [2023] - 2023-10-11
 
