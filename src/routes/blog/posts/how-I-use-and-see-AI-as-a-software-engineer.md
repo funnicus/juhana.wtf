@@ -1,7 +1,7 @@
 ---
 title: 'How I Use and See A.I. as a Software Engineer (2026)'
 description: 'I was amazed by the abilities of Claude Sonnet 4.5 at the end of the last year and decided to again explore how I could use A.I. in my software engineering work.'
-date: '2026-03-04'
+date: '2026-03-09'
 author: 'Juhana Kuparinen'
 tags: ['software engineering', 'A.I.', 'philosophy']
 image: '/me.webp'
