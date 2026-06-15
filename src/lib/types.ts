@@ -1,11 +1,16 @@
+import type { ThemeSlug } from '$lib/blog/themes';
+
 export type ResolvedPost = {
 	metadata: {
 		title: string;
 		description: string;
 		date: string;
+		theme: ThemeSlug;
+		draft: boolean;
 		author?: string;
 		tags?: string[];
 		image?: string;
+		featured?: boolean;
 	};
 };
 
@@ -14,10 +19,13 @@ export type Post = {
 		title: string;
 		description: string;
 		date: string;
+		theme: ThemeSlug;
+		draft: boolean;
 		author?: string;
 		tags?: string[];
 		image?: string;
+		featured?: boolean;
 	};
-	path: string;
+	slug: string;
 	readTime: number;
 };

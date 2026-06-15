@@ -33,7 +33,59 @@ docker run -e PUBLIC_PLAUSIBLE_DOMAIN=juhana.wtf -d -p 3000:3000 juhana-wtf # Ru
 docker stop juhana-wtf && docker rm juhana-wtf # Remove
 ```
 
+## Database
+
+Newsletter and campaign state use Postgres through Kysely.
+
+Required environment variable:
+
+```bash
+DATABASE_URL=postgres://user:password@localhost:5432/juhana_wtf
+```
+
+Run migrations explicitly:
+
+```bash
+pnpm db:migrate
+```
+
+Migrations are not run automatically on app startup. Public blog pages should keep working even when the database is not configured.
+
+See [docs/newsletter.md](docs/newsletter.md) for the full newsletter flow.
+
+## Newsletter
+
+Subscriptions are hidden and disabled unless all required configuration is present:
+
+```bash
+SUBSCRIPTIONS_ENABLED=true
+DATABASE_URL=postgres://user:password@localhost:5432/juhana_wtf
+PUBLIC_SITE_URL=https://juhana.wtf
+PUBLIC_TURNSTILE_SITE_KEY=...
+TURNSTILE_SECRET_KEY=...
+POSTMARK_SERVER_TOKEN=...
+POSTMARK_TRANSACTIONAL_STREAM=outbound
+POSTMARK_BROADCAST_STREAM=broadcast
+POSTMARK_FROM_EMAIL=newsletter@juhana.wtf
+```
+
+`PUBLIC_SITE_URL` defaults to `https://juhana.wtf` if omitted. `POSTMARK_FROM_EMAIL` must be a verified dedicated sender in Postmark.
+
+Manual campaign commands use post slugs:
+
+```bash
+pnpm blog:campaign:preview -- welcome
+pnpm blog:campaign:preview -- welcome you@example.com
+pnpm blog:campaign:queue -- welcome
+pnpm blog:campaign:process -- welcome
+pnpm blog:campaign:retry -- welcome
+```
+
+Campaign targeting is fixed to the post theme. Failed deliveries are only retried when explicitly re-queued with `blog:campaign:retry`.
+
 ## Blogs
+
+See [docs/blog.md](docs/blog.md) for theme taxonomy, frontmatter rules, routes, and feeds.
 
 Format like this:
 
@@ -42,6 +94,14 @@ Format like this:
 title: 'Your Post Title'
 description: 'A brief description'
 date: '2025-12-29'
+theme: 'builder-notes'
+draft: false
 author: 'Your Name'
 ---
 ```
+
+## Infrastructure
+
+Shared Cloudflare, Postmark, Postgres, and backup work belongs outside this app repo.
+
+See [docs/infra-handoff.md](docs/infra-handoff.md).

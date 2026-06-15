@@ -1,0 +1,64 @@
+networks:
+  apps:
+    name: tunnels_apps
+    driver: bridge
+
+services:
+  personal-site:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - apps
+    env_file:
+      - path: ./.env
+        required: false
+    depends_on:
+      personal-site-db:
+        condition: service_healthy
+
+  personal-site-migrate:
+    build:
+      context: .
+    command: pnpm db:migrate
+    profiles:
+      - migrate
+    networks:
+      - apps
+    env_file:
+      - path: ./.env
+        required: false
+    depends_on:
+      personal-site-db:
+        condition: service_healthy
+
+  personal-site-db:
+    image: postgres:17-alpine
+    container_name: personal-site-db
+    restart: unless-stopped
+    networks:
+      - apps
+    volumes:
+      - personal-site-pgdata:/var/lib/postgresql/data
+      - personal-site-pg-dumps:/tmp/backups
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-juhana_wtf}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme_personal_site}
+      POSTGRES_DB: ${POSTGRES_DB:-juhana_wtf}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    labels:
+      docker-volume-backup.archive-pre: >-
+        /bin/sh -c 'pg_dump -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -Fc -f /tmp/backups/juhana_wtf.dump'
+      docker-volume-backup.archive-post: >-
+        /bin/sh -c 'rm -f /tmp/backups/juhana_wtf.dump'
+      docker-volume-backup.exec-label: personal-site-postgres
+
+volumes:
+  personal-site-pgdata:
+  personal-site-pg-dumps:

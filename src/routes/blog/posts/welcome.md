@@ -2,6 +2,8 @@
 title: 'Welcome to My Blog'
 description: 'The first post on my new markdown-based blog built with SvelteKit and mdsvex'
 date: '2025-12-29'
+theme: 'builder-notes'
+draft: false
 author: 'Juhana Kuparinen'
 tags: ['svelte', 'blogging', 'web development']
 image: '/me.webp'
