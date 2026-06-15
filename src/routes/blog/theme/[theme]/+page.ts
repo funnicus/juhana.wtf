@@ -1,8 +1,9 @@
 import { error } from '@sveltejs/kit';
 import { getPostsByTheme } from '$lib/blog/posts';
 import { getTheme, themes } from '$lib/blog/themes';
+import type { PageLoad } from './$types';
 
-export const load = async ({ params }) => {
+export const load: PageLoad = async ({ params }) => {
 	const theme = getTheme(params.theme);
 
 	if (!theme) {

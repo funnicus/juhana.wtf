@@ -1,5 +1,5 @@
 import type { ColumnType, Generated, Insertable, Selectable, Updateable } from 'kysely';
-import type { ThemeSlug } from '$lib/blog/themes';
+import type { ThemeSlug } from '../../blog/themes';
 
 export const subscriberStatuses = ['pending', 'active', 'unsubscribed'] as const;
 export const campaignStatuses = ['draft', 'queued', 'sending', 'sent', 'failed'] as const;
@@ -59,6 +59,7 @@ export interface EmailDeliveryTable {
 	attempt_count: Generated<number>;
 	claimed_at: NullableTimestamp;
 	sent_at: NullableTimestamp;
+	unsubscribe_token_hash: string | null;
 	provider_message_id: string | null;
 	error: string | null;
 	created_at: Timestamp;

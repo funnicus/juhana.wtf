@@ -184,8 +184,14 @@ export const unsubscribeAll = async (token: string) => {
 	await db.transaction().execute(async (trx) => {
 		const subscriber = await trx
 			.selectFrom('subscribers')
-			.select('id')
-			.where('unsubscribe_token_hash', '=', tokenHash)
+			.leftJoin('email_deliveries', 'email_deliveries.subscriber_id', 'subscribers.id')
+			.select('subscribers.id')
+			.where((eb) =>
+				eb.or([
+					eb('subscribers.unsubscribe_token_hash', '=', tokenHash),
+					eb('email_deliveries.unsubscribe_token_hash', '=', tokenHash)
+				])
+			)
 			.executeTakeFirst();
 
 		if (!subscriber) {
