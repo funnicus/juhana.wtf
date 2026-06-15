@@ -51,6 +51,8 @@ pnpm db:migrate
 
 Migrations are not run automatically on app startup. Public blog pages should keep working even when the database is not configured.
 
+See [docs/newsletter.md](docs/newsletter.md) for the full newsletter flow.
+
 ## Newsletter
 
 Subscriptions are hidden and disabled unless all required configuration is present:
@@ -83,6 +85,8 @@ Campaign targeting is fixed to the post theme. Failed deliveries are only retrie
 
 ## Blogs
 
+See [docs/blog.md](docs/blog.md) for theme taxonomy, frontmatter rules, routes, and feeds.
+
 Format like this:
 
 ```md
@@ -95,3 +99,9 @@ draft: false
 author: 'Your Name'
 ---
 ```
+
+## Infrastructure
+
+Shared Cloudflare, Postmark, Postgres, and backup work belongs outside this app repo.
+
+See [docs/infra-handoff.md](docs/infra-handoff.md).
