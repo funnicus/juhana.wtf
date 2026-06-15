@@ -51,6 +51,23 @@ pnpm db:migrate
 
 Migrations are not run automatically on app startup. Public blog pages should keep working even when the database is not configured.
 
+## Newsletter
+
+Subscriptions are hidden and disabled unless all required configuration is present:
+
+```bash
+SUBSCRIPTIONS_ENABLED=true
+DATABASE_URL=postgres://user:password@localhost:5432/juhana_wtf
+PUBLIC_SITE_URL=https://juhana.wtf
+PUBLIC_TURNSTILE_SITE_KEY=...
+TURNSTILE_SECRET_KEY=...
+POSTMARK_SERVER_TOKEN=...
+POSTMARK_TRANSACTIONAL_STREAM=outbound
+POSTMARK_FROM_EMAIL=newsletter@juhana.wtf
+```
+
+`PUBLIC_SITE_URL` defaults to `https://juhana.wtf` if omitted. `POSTMARK_FROM_EMAIL` must be a verified dedicated sender in Postmark.
+
 ## Blogs
 
 Format like this:

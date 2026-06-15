@@ -44,7 +44,8 @@
 	"dependencies": {
 		"@fontsource/fira-mono": "^5.2.5",
 		"kysely": "^0.29.2",
-		"pg": "^8.21.0"
+		"pg": "^8.21.0",
+		"postmark": "^4.0.7"
 	},
 	"pnpm": {
 		"overrides": {

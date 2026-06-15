@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { getPostsByTheme } from '$lib/blog/posts';
-import { getTheme } from '$lib/blog/themes';
+import { getTheme, themes } from '$lib/blog/themes';
 
 export const load = async ({ params }) => {
 	const theme = getTheme(params.theme);
@@ -13,6 +13,7 @@ export const load = async ({ params }) => {
 
 	return {
 		theme,
+		themes,
 		posts
 	};
 };

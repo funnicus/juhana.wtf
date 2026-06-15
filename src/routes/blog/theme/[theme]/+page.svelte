@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import JsonLd from '$lib/JsonLd.svelte';
 	import PostCard from '$lib/PostCard.svelte';
+	import SubscribeForm from '$lib/SubscribeForm.svelte';
 
 	let { data } = $props();
 
@@ -79,5 +80,13 @@
 				/>
 			{/each}
 		</div>
+	{/if}
+
+	{#if data.newsletter.enabled}
+		<SubscribeForm
+			themes={data.themes}
+			turnstileSiteKey={data.newsletter.turnstileSiteKey}
+			preselectedTheme={data.theme.slug}
+		/>
 	{/if}
 </div>

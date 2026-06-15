@@ -34,6 +34,12 @@ export interface SubscriberThemePreferenceTable {
 	created_at: Timestamp;
 }
 
+export interface SubscriberPendingThemePreferenceTable {
+	subscriber_id: number;
+	theme_slug: ThemeSlug;
+	created_at: Timestamp;
+}
+
 export interface EmailCampaignTable {
 	id: Generated<number>;
 	post_slug: string;
@@ -62,6 +68,7 @@ export interface EmailDeliveryTable {
 export interface Database {
 	subscribers: SubscriberTable;
 	subscriber_theme_preferences: SubscriberThemePreferenceTable;
+	subscriber_pending_theme_preferences: SubscriberPendingThemePreferenceTable;
 	email_campaigns: EmailCampaignTable;
 	email_deliveries: EmailDeliveryTable;
 }
@@ -72,6 +79,9 @@ export type SubscriberUpdate = Updateable<SubscriberTable>;
 
 export type SubscriberThemePreference = Selectable<SubscriberThemePreferenceTable>;
 export type NewSubscriberThemePreference = Insertable<SubscriberThemePreferenceTable>;
+
+export type SubscriberPendingThemePreference = Selectable<SubscriberPendingThemePreferenceTable>;
+export type NewSubscriberPendingThemePreference = Insertable<SubscriberPendingThemePreferenceTable>;
 
 export type EmailCampaign = Selectable<EmailCampaignTable>;
 export type NewEmailCampaign = Insertable<EmailCampaignTable>;
