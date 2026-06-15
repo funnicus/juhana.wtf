@@ -8,22 +8,22 @@ The blog should remain simple and git-native for writing, while gaining clear ed
 
 ## Current State
 
-* SvelteKit app
-* Blog posts stored as Markdown files
-* Single blog page/feed surface
-* Runs on my own server
-* Exposed publicly through Cloudflare
+- SvelteKit app
+- Blog posts stored as Markdown files
+- Single blog page/feed surface
+- Runs on my own server
+- Exposed publicly through Cloudflare
 
 ## Core Principles
 
-* Do **not** move blog posts into the database yet.
-* Keep posts as Markdown files in git.
-* Each published post has exactly one primary editorial theme.
-* Tags are metadata only in v1, not public archive pages.
-* Public reading must not depend on Postgres, email, Turnstile, or other dynamic infrastructure.
-* Use Postgres only for dynamic audience infrastructure.
-* Keep changes incremental and test each step.
-* Ask before introducing major architectural dependencies.
+- Do **not** move blog posts into the database yet.
+- Keep posts as Markdown files in git.
+- Each published post has exactly one primary editorial theme.
+- Tags are metadata only in v1, not public archive pages.
+- Public reading must not depend on Postgres, email, Turnstile, or other dynamic infrastructure.
+- Use Postgres only for dynamic audience infrastructure.
+- Keep changes incremental and test each step.
+- Ask before introducing major architectural dependencies.
 
 ## Implementation Scope Split
 
@@ -31,34 +31,34 @@ The blog should remain simple and git-native for writing, while gaining clear ed
 
 Implement the SvelteKit and application database parts:
 
-* blog metadata model
-* theme taxonomy/config
-* `/blog` hub page
-* `/blog/[slug]` canonical post routes
-* redirects from `/blog/posts/[slug]`
-* `/blog/theme/[theme]` pages
-* main RSS feed
-* theme RSS feeds
-* Postgres/Kysely schema and migrations
-* subscription UI/backend
-* Turnstile-gated subscribe endpoint
-* double opt-in
-* unsubscribe-all flow
-* manual campaign scripts
-* Postmark integration
-* delivery logs
+- blog metadata model
+- theme taxonomy/config
+- `/blog` hub page
+- `/blog/[slug]` canonical post routes
+- redirects from `/blog/posts/[slug]`
+- `/blog/theme/[theme]` pages
+- main RSS feed
+- theme RSS feeds
+- Postgres/Kysely schema and migrations
+- subscription UI/backend
+- Turnstile-gated subscribe endpoint
+- double opt-in
+- unsubscribe-all flow
+- manual campaign scripts
+- Postmark integration
+- delivery logs
 
 ### Outside This Repository
 
 Handle shared infrastructure separately, likely in the broader infra monorepo:
 
-* Cloudflare DNS
-* Cloudflare Tunnel
-* Cloudflare Access policies
-* Turnstile resource provisioning
-* production Docker Compose/deployment wiring
-* off-server backups
-* restore scripts and restore testing
+- Cloudflare DNS
+- Cloudflare Tunnel
+- Cloudflare Access policies
+- Turnstile resource provisioning
+- production Docker Compose/deployment wiring
+- off-server backups
+- restore scripts and restore testing
 
 This repo should still document the required deployment contract: env vars, database migration command, backup requirement, Turnstile requirement, and Postmark requirement.
 
@@ -72,9 +72,9 @@ Required v1 fields:
 
 ```yaml
 ---
-title: "AI Coding Tools Are Great Until Architecture Matters"
-date: "2026-06-15"
-description: "Notes from using AI heavily in real software work."
+title: 'AI Coding Tools Are Great Until Architecture Matters'
+date: '2026-06-15'
+description: 'Notes from using AI heavily in real software work.'
 theme: builder-notes
 draft: false
 ---
@@ -83,11 +83,11 @@ draft: false
 Optional fields:
 
 ```yaml
-author: "Juhana Kuparinen"
+author: 'Juhana Kuparinen'
 tags:
   - ai-realism
   - architecture
-image: "/me.webp"
+image: '/me.webp'
 featured: true
 ```
 
@@ -177,20 +177,20 @@ Do not add v1 routes for:
 
 Recommended structure:
 
-* theme directory with positioning copy
-* latest 3-5 published posts across all themes
-* link to the all-post RSS feed
-* link to each theme page/feed
+- theme directory with positioning copy
+- latest 3-5 published posts across all themes
+- link to the all-post RSS feed
+- link to each theme page/feed
 
 ## Theme Pages
 
 Each theme page should have:
 
-* clear positioning copy
-* theme-specific visual treatment, starting with light accent styling
-* post list for that theme
-* theme RSS link
-* subscription CTA once subscriptions are enabled
+- clear positioning copy
+- theme-specific visual treatment, starting with light accent styling
+- post list for that theme
+- theme RSS link
+- subscription CTA once subscriptions are enabled
 
 Use one reusable subscribe component later. On a theme page, it should default to that theme while still allowing the reader to choose other themes.
 
@@ -238,18 +238,18 @@ Subscriptions must be explicitly enabled.
 
 Required before accepting subscriptions:
 
-* `SUBSCRIPTIONS_ENABLED=true`
-* database configured
-* Turnstile configured
-* Postmark configured
-* off-server backups configured outside this repo
+- `SUBSCRIPTIONS_ENABLED=true`
+- database configured
+- Turnstile configured
+- Postmark configured
+- off-server backups configured outside this repo
 
 If subscriptions are disabled:
 
-* public blog pages still work
-* subscribe UI is hidden
-* subscribe endpoints fail closed
-* server logs explain the missing dependency
+- public blog pages still work
+- subscribe UI is hidden
+- subscribe endpoints fail closed
+- server logs explain the missing dependency
 
 ## Database
 
@@ -259,10 +259,10 @@ Use Kysely for typed queries and migrations.
 
 Accepted dependencies for the database slice:
 
-* `kysely`
-* `pg`
-* `tsx`
-* `@types/pg`
+- `kysely`
+- `pg`
+- `tsx`
+- `@types/pg`
 
 Do not use `kysely-ctl` in v1. Use repo-local scripts such as `pnpm db:migrate`.
 
@@ -316,22 +316,22 @@ email_deliveries
 
 Use DB check constraints for:
 
-* known theme slugs
-* subscriber statuses
-* campaign statuses
-* delivery statuses
+- known theme slugs
+- subscriber statuses
+- campaign statuses
+- delivery statuses
 
 ## Subscription Rules
 
-* Normalize emails by trimming and lowercasing.
-* Store confirmation and unsubscribe token hashes, not raw tokens.
-* Confirmation tokens expire, initially after 7 days.
-* Public subscribe form always returns a generic success message.
-* Public subscribe form must not reveal whether an email is already subscribed.
-* For new, pending, active, or unsubscribed emails, public subscribe sends confirmation.
-* Preferences are replaced after confirmation.
-* Unsubscribe link unsubscribes from all themes.
-* Resubscribe requires double opt-in again.
+- Normalize emails by trimming and lowercasing.
+- Store confirmation and unsubscribe token hashes, not raw tokens.
+- Confirmation tokens expire, initially after 7 days.
+- Public subscribe form always returns a generic success message.
+- Public subscribe form must not reveal whether an email is already subscribed.
+- For new, pending, active, or unsubscribed emails, public subscribe sends confirmation.
+- Preferences are replaced after confirmation.
+- Unsubscribe link unsubscribes from all themes.
+- Resubscribe requires double opt-in again.
 
 ## Campaign Rules
 
@@ -345,9 +345,9 @@ post slug -> post theme -> active subscribers with that theme preference
 
 Campaign email content should require the least work:
 
-* subject = post title snapshot
-* body = post description + canonical post link
-* footer = unsubscribe link
+- subject = post title snapshot
+- body = post description + canonical post link
+- footer = unsubscribe link
 
 Do not render full Markdown posts into email in v1.
 
@@ -357,8 +357,8 @@ Use Postmark rather than direct server email.
 
 Use separate streams:
 
-* transactional stream for confirmation/unsubscribe/admin test emails
-* broadcast stream for post campaigns
+- transactional stream for confirmation/unsubscribe/admin test emails
+- broadcast stream for post campaigns
 
 Store provider IDs and errors in `email_deliveries`.
 
@@ -386,12 +386,12 @@ The database table acts as the queue.
 
 Delivery processing should avoid duplicate sends:
 
-* claim queued rows transactionally
-* use `for update skip locked`
-* mark rows as `sending`
-* send outside the transaction
-* update each row to `sent` or `failed`
-* failed deliveries require explicit retry
+- claim queued rows transactionally
+- use `for update skip locked`
+- mark rows as `sending`
+- send outside the transaction
+- update each row to `sent` or `failed`
+- failed deliveries require explicit retry
 
 ## Suggested Implementation Order
 
@@ -487,14 +487,14 @@ docs: add newsletter infrastructure handoff
 
 ## Constraints
 
-* Prefer minimal diffs.
-* Keep the publishing system simple.
-* Markdown remains the source of truth for posts.
-* Do not overbuild the newsletter system.
-* Avoid making the blog dependent on the database for public reading.
-* Prefer boring, reliable infrastructure.
-* Make changes incrementally and test each step.
-* Ask before introducing major architectural dependencies.
+- Prefer minimal diffs.
+- Keep the publishing system simple.
+- Markdown remains the source of truth for posts.
+- Do not overbuild the newsletter system.
+- Avoid making the blog dependent on the database for public reading.
+- Prefer boring, reliable infrastructure.
+- Make changes incrementally and test each step.
+- Ask before introducing major architectural dependencies.
 
 ## Desired Outcome
 
