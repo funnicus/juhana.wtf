@@ -110,7 +110,7 @@
 					<span class="text-image-grey">Software Engineer | Entrepreneur</span>
 				</h2>
 				<p class="text-image-grey mt-4 max-w-sm text-sm leading-relaxed md:text-base">
-					I build software and occasionally write about it. Welcome to my corner of the internet.
+					I'm a builder and an explorer occasionally writing about my journey. Welcome along!
 				</p>
 			</div>
 			<h3 class="mt-8 md:text-3xl">
