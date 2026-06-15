@@ -1,21 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import type { ResolvedPost } from '$lib/types';
+import { getPublishedPosts } from '$lib/blog/posts';
+import { themes } from '$lib/blog/themes';
 
 export const GET: RequestHandler = async () => {
-	const allPostFiles = import.meta.glob('../blog/posts/*.md');
-	const iterablePostFiles = Object.entries(allPostFiles);
-
-	const allPosts = await Promise.all(
-		iterablePostFiles.map(async ([path, resolver]) => {
-			const resolvedPost = (await resolver()) as ResolvedPost;
-			const postPath = path.slice(8, -3); // Remove '../blog/' and '.md'
-			return {
-				path: postPath,
-				date: resolvedPost.metadata.date
-			};
-		})
-	);
-
+	const posts = await getPublishedPosts();
 	const baseUrl = 'https://juhana.wtf';
 
 	const staticPages = [
@@ -23,14 +11,20 @@ export const GET: RequestHandler = async () => {
 		{ url: '/blog', priority: '0.9', changefreq: 'weekly' }
 	];
 
-	const postPages = allPosts.map((post) => ({
-		url: `/blog/${post.path}`,
+	const themePages = themes.map((theme) => ({
+		url: `/blog/theme/${theme.slug}`,
 		priority: '0.8',
-		changefreq: 'monthly',
-		lastmod: post.date
+		changefreq: 'weekly'
 	}));
 
-	const allPages = [...staticPages, ...postPages];
+	const postPages = posts.map((post) => ({
+		url: `/blog/${post.slug}`,
+		priority: '0.8',
+		changefreq: 'monthly',
+		lastmod: post.meta.date
+	}));
+
+	const allPages = [...staticPages, ...themePages, ...postPages];
 
 	const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
