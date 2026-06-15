@@ -33,6 +33,24 @@ docker run -e PUBLIC_PLAUSIBLE_DOMAIN=juhana.wtf -d -p 3000:3000 juhana-wtf # Ru
 docker stop juhana-wtf && docker rm juhana-wtf # Remove
 ```
 
+## Database
+
+Newsletter and campaign state use Postgres through Kysely.
+
+Required environment variable:
+
+```bash
+DATABASE_URL=postgres://user:password@localhost:5432/juhana_wtf
+```
+
+Run migrations explicitly:
+
+```bash
+pnpm db:migrate
+```
+
+Migrations are not run automatically on app startup. Public blog pages should keep working even when the database is not configured.
+
 ## Blogs
 
 Format like this:
@@ -42,6 +60,8 @@ Format like this:
 title: 'Your Post Title'
 description: 'A brief description'
 date: '2025-12-29'
+theme: 'builder-notes'
+draft: false
 author: 'Your Name'
 ---
 ```
